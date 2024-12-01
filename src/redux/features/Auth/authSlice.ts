@@ -3,10 +3,12 @@ import { RootState } from "../../store";
 
 export type TUserLogin = {
   id: string;
+  name:string;
+  email: string;
   role: string;
+  status: string;
   iat: number;
   exp: number;
-  email: string;
 };
 type TAuthState = {
   user: null | TUserLogin;

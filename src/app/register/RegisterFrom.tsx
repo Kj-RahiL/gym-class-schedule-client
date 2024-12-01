@@ -31,7 +31,6 @@ const LoginForm = () => {
     try {
       dispatch(logOut());
       const response = await signUp(registerData).unwrap();
-      console.log(response);
 
       toast.success(response.message, {
         duration: 4000,
@@ -45,7 +44,6 @@ const LoginForm = () => {
         password: registerData.password,
       };
       const res = await login(userInfo).unwrap();
-      console.log(res)
       const token = res.token
       const user = verifyToken(token)
 
