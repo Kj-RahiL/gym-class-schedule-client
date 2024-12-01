@@ -2,16 +2,16 @@
 
 import React from "react";
 import DashboardLayout from "../../layout/dashboardLayout";
-import UserSidebar from "../../components/sidebar/UserSidebar";
 import DashboardNavbar from "../../components/dashboardNavbar/DashboardNavbar";
 import { SearchProvider } from "../../components/searchContext/search-context";
+import TraineeSidebarWrapper from "../../components/sidebar/TrainerSidebar";
 
-const UserLayout = ({ children }: { children: React.ReactNode }) => {
+const TrainerLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <DashboardLayout>
       <div className="flex">
       <SearchProvider>
-        <UserSidebar />
+        <TraineeSidebarWrapper />
         <DashboardNavbar>{children}</DashboardNavbar>
         </SearchProvider>
       </div>
@@ -19,4 +19,4 @@ const UserLayout = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default UserLayout;
+export default TrainerLayout;

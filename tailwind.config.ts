@@ -11,6 +11,7 @@ const config: import('tailwindcss').Config = {
     extend: {}
   },
   darkMode: "class",
-  plugins: [nextui()],
+  darkMode: "class",
+ plugins: [nextui()],
 };
 export default config;

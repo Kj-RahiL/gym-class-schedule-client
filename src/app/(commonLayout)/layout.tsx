@@ -4,8 +4,8 @@ import { Link } from "@nextui-org/link";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Chef's Circle",
-  description: "Recipe Sharing Community",
+  title: "GYM FIT",
+  description: "GYm CLass Schedule Wwb App",
 };
 
 export default function RootLayout({

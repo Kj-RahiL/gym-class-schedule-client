@@ -25,7 +25,7 @@ const NavbarPage = () => {
   if (token) {
     user = verifyToken(token);
   }
-  console.log(user, 'nav')
+  // console.log(user, 'nav')
 
   return (
     <Navbar

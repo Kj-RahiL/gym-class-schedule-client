@@ -7,7 +7,7 @@ import {  Home, NotebookPen, PersonStanding, Settings, User, UserCircle2Icon, Us
 import SidebarMenu from "./SidebarMenu";
 import SidebarItem from "./SidebarItem";
 
- const AdminSidebarWrapper = () => {
+ const TraineeSidebarWrapper = () => {
 
   const pathname = usePathname();
   const { collapsed } = useSidebarContext();
@@ -32,21 +32,15 @@ import SidebarItem from "./SidebarItem";
             <SidebarItem
               title="Home"
               icon={<Home />}
-              isActive={pathname === "/admin-dashboard"}
-              href="/admin-dashboard"
+              isActive={pathname === "/trainer-dashboard"}
+              href="/trainer-dashboard"
             />
             <SidebarMenu title="Main Menu">
               <SidebarItem
-                isActive={pathname === "/admin-dashboard/manage-trainers"}
-                title="Manage Trainers"
+                isActive={pathname === "/trainer-dashboard/view-classes"}
+                title="View Classes"
                 icon={<Users />}
-                href="/admin-dashboard/manage-trainers"
-              />
-              <SidebarItem
-                isActive={pathname === "/admin-dashboard/class-schedule"}
-                title="Class Scheduling"
-                icon={<NotebookPen />}
-                href="/admin-dashboard/class-schedule"
+                href="/trainer-dashboard/view-classes"
               />
             </SidebarMenu>
           </div>
@@ -76,4 +70,4 @@ import SidebarItem from "./SidebarItem";
   );
 };
 
-export default AdminSidebarWrapper
+export default TraineeSidebarWrapper

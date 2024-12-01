@@ -1,9 +1,9 @@
-import ProfileCard from "@/app/(commonLayout)/components/Profile/ProfileCard";
-
 
 
 const ProfilePage = () => {
-  return <ProfileCard />;
+  return <div>
+    Profile page
+  </div>
 };
 
 export default ProfilePage;

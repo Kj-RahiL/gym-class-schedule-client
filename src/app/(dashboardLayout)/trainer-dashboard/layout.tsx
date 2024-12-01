@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import UserLayout from "../trainer-dashboard/layout/UserLayout";
+import TrainerLayout from "./layout/TrainerLayout";
 
 export const metadata: Metadata = {
   title: "Recipe Sharing Community",
@@ -13,7 +13,7 @@ export default function RootLayout({
 }>) {
   return (
     <div>
-      <UserLayout>{children}</UserLayout>
+      <TrainerLayout>{children}</TrainerLayout>
     </div>
   );
 }

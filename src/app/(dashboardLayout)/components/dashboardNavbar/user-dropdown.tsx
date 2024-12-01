@@ -1,22 +1,22 @@
 
-import { ThemeSwitcher } from "@/app/(commonLayout)/components/shared/ThemeSwitcher";
-import { useUser } from "@/context/user.provider";
-import { logout } from "@/services/AuthService";
-import {
-  DropdownItem,
-  DropdownTrigger,
-  Dropdown,
-  DropdownMenu,
-  Avatar,
-} from "@nextui-org/react";
+import { logOut, useCurrentToken } from "@/redux/features/Auth/authSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { verifyToken } from "@/utils/verifyToken";
+import { Avatar } from "@nextui-org/avatar";
+import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@nextui-org/dropdown";
 import { useRouter } from "next/navigation";
 
 const UserDropdown = () => {
   const router = useRouter();
-  const { user, setIsLoading } = useUser();
+  const dispatch = useAppDispatch();
+  const token = useAppSelector(useCurrentToken);
+  let user:any
+
+  if (token) {
+    user = verifyToken(token);
+  }
   const handleLogout = () => {
-    logout();
-    setIsLoading(true);
+    dispatch(logOut())
     router.push("/");
   };
 
@@ -30,7 +30,6 @@ const UserDropdown = () => {
           color="secondary"
           name="Jason Hughes"
           size="sm"
-          src={user?.image}
         />
       </DropdownTrigger>
       <DropdownMenu aria-label="Profile Actions" variant="flat">
@@ -48,9 +47,6 @@ const UserDropdown = () => {
           onClick={() => handleLogout()}
         >
           Log Out
-        </DropdownItem>
-        <DropdownItem>
-          <ThemeSwitcher></ThemeSwitcher>
         </DropdownItem>
       </DropdownMenu>
     </Dropdown>

@@ -1,10 +1,10 @@
 import { Navbar, NavbarContent } from "@nextui-org/navbar";
-import { Input } from "@nextui-org/react";
 import { ChevronLeft, MenuIcon, SearchCheck } from "lucide-react";
 import React from "react";
 import { useSidebarContext } from "../../layout/layout-context";
 import UserDropdown from "./user-dropdown";
 import { useSearchContext } from "../searchContext/search-context";
+import { Input } from "@nextui-org/input";
 
 const DashboardNavbar = ({ children }: { children: React.ReactNode }) => {
   const { collapsed, setCollapsed } = useSidebarContext();
