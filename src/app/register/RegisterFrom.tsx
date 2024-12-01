@@ -1,23 +1,68 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
+import { useLogInMutation, useSignUpMutation } from "@/redux/features/Auth/authApi";
+import { logOut, setLoginUser } from "@/redux/features/Auth/authSlice";
+import { useAppDispatch } from "@/redux/hooks";
+import { verifyToken } from "@/utils/verifyToken";
 import { Link } from "@nextui-org/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
+import { toast } from "sonner";
 
 const LoginForm = () => {
   const searchParams = useSearchParams();
   const redirect = searchParams.get("redirect");
   const router = useRouter();
+  
+  const dispatch = useAppDispatch();
+  const [signUp, { isLoading, error }] = useSignUpMutation();
+  const [login] = useLogInMutation();
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
-
-    const userInfo = {
+    const registerData = {
+      name:form.fullName.value,
       email: form.email.value,
       password: form.password.value,
+      
     };
+    try {
+      dispatch(logOut());
+      const response = await signUp(registerData).unwrap();
+      console.log(response);
+
+      toast.success(response.message, {
+        duration: 4000,
+        style: { color: "green" },
+      });
+      // navigate("/");
+
+      // login
+      const userInfo = {
+        email: registerData.email,
+        password: registerData.password,
+      };
+      const res = await login(userInfo).unwrap();
+      console.log(res)
+      const token = res.token
+      const user = verifyToken(token)
+
+      dispatch(setLoginUser({user, token}))
+      toast.success("Logged In Successful", { duration: 4000 });
+      if (redirect) {
+        router.push(redirect);
+      } else {
+        router.push("/");
+      }
+    } catch (err: any) {
+      toast.error(`Error: ${err.data.message || "Sign-up failed"}`, {
+        duration: 4000,
+        style: { color: "red" },
+      });
+      console.log({ err });
+    }
   };
 
   return (
@@ -28,7 +73,7 @@ const LoginForm = () => {
             Register Here!
           </h1>
 
-          {/* Email Field */}
+          {/* Name Field */}
           <div className="form-control">
             <label className="label">
               <span className="label-text text-white text-sm md:text-base">
@@ -37,9 +82,10 @@ const LoginForm = () => {
             </label>
             <input
               type="text"
-              name="name"
+              name="fullName"
               placeholder="Enter your Full Name"
               className="input-field"
+              required
             />
           </div>
           {/* Email Field */}

@@ -7,6 +7,7 @@ import { Providers } from "./lib/providers";
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
+import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
   title: {
@@ -46,6 +47,7 @@ export default function RootLayout({
             <main className="container mx-auto max-w-7xl flex-grow">
               {children}
             </main>
+            <Toaster />
           </div>
         </Providers>
       </body>

@@ -1,14 +1,21 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
+import { useLogInMutation } from "@/redux/features/Auth/authApi";
+import { setLoginUser } from "@/redux/features/Auth/authSlice";
+import { useAppDispatch } from "@/redux/hooks";
+import { verifyToken } from "@/utils/verifyToken";
 import { Link } from "@nextui-org/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
+import { toast } from "sonner";
 
 const LoginForm = () => {
   const searchParams = useSearchParams();
   const redirect = searchParams.get("redirect");
   const router = useRouter();
+  const dispatch = useAppDispatch();
+  const [login, {isError, isLoading}] = useLogInMutation();
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -18,7 +25,38 @@ const LoginForm = () => {
       email: form.email.value,
       password: form.password.value,
     };
+     try {
+      const res = await login(userInfo).unwrap();
+      console.log(res)
+      const token = res.token
+      const user = verifyToken(token)
+      console.log(user)
+
+      dispatch(setLoginUser({user, token}))
+      toast.success("Logged In Successful", { duration: 4000 });
+      if (redirect) {
+        router.push(redirect);
+      } else {
+        router.push("/");
+      }
+
+     } catch (error:any) {
+      toast.error(error.data?.message || "login failed")
+     }
+     
+     
+    
   };
+
+  // useEffect(() => {
+  //   if (!isLoading && isSuccess) {
+  //     if (redirect) {
+  //       router.push(redirect);
+  //     } else {
+  //       router.push("/feed");
+  //     }
+  //   }
+  // }, [isLoading, isSuccess]);
 
   return (
       <div className="backdrop-blur-md w-full max-w-md lg:max-w-lg xl:max-w-xl p-6 md:p-8 lg:p-10 rounded border border-gray-500/30 shadow-lg mx-auto ">
@@ -66,7 +104,7 @@ const LoginForm = () => {
               type="submit"
               className="btn w-full"
             >
-              Login
+              {isLoading ? "Logging in..." : "Login"}
             </button>
           </div>
 
