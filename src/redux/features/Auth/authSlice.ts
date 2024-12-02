@@ -29,10 +29,16 @@ const authSlice = createSlice({
       const { user, token } = action.payload;
       state.user = user;
       state.token = token;
+      Cookies.set("accessToken", token, {
+        expires: 7, // Expire in 7 days
+        secure: true, // Only send over HTTPS
+        sameSite: "strict", // Prevent CSRF
+      });
     },
     logOut: (state) => {
       state.user = null;
       state.token = null;
+      Cookies.remove("accessToken");
     },
   },
 });

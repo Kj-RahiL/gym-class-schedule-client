@@ -1,53 +1,67 @@
-# Next.js & NextUI Template
+# 🧘‍♂️ Gym Class Scheduling and Membership Management Client app
 
-This is a template for creating applications using Next.js 14 (app directory) and NextUI (v2).
+## Live Url: https://gym-class-schedule-client.vercel.app
 
-[Try it on CodeSandbox](https://githubbox.com/nextui-org/next-app-template)
+## Story
+
+The Gym Class Scheduling and Membership Management System is designed to manage gym operations efficiently. The system defines three roles: Admin, Trainer, and Trainee, each with specific permissions. Admins are responsible for creating and managing trainers, scheduling classes, and assigning trainers to these schedules. Each day can have a maximum of five class schedules, with each class lasting two hours. Trainers conduct the classes and can view their assigned class schedules but cannot create new schedules or manage trainee profiles.
+
+## Features
+
+- **User Authentication**: User sign-up, login, and role-based access control (Admin/Trainer/Trainee).
+- **Trainer Management**: Admins can add, update, delete trainer.
+- **Class Management**: ADmin can create, update, delete class schedule.
+- **View System**: trainer can view their class.
+- **Booking System**: trainee can book their class.
 
 ## Technologies Used
 
-- [Next.js 14](https://nextjs.org/docs/getting-started)
-- [NextUI v2](https://nextui.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Tailwind Variants](https://tailwind-variants.org)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Framer Motion](https://www.framer.com/motion/)
-- [next-themes](https://github.com/pacocoursey/next-themes)
+- **Frontend**:  TypeScript, Next.js, Redux, Framer motion, 
+- **Authentication**: JSON Web Tokens (JWT) for secure authentication
+- **Error Handling**: Global error handling middleware
 
-## How to Use
 
-### Use the template with create-next-app
+## Installation
 
-To create a new project based on this template using `create-next-app`, run the following command:
+1. Clone the repository:
 
-```bash
-npx create-next-app -e https://github.com/nextui-org/next-app-template
-```
+   ```bash
+   git clone <your repository>
 
-### Install dependencies
+    ```
+2. Navigate to the project directory:
+    ``` 
+    cd gym-class-schedule-client
+    ```
+3. Install the dependencies:
+    ``` 
+    npm install
+    ```
 
-You can use one of them `npm`, `yarn`, `pnpm`, `bun`, Example using `npm`:
+5. Start the server:
+    ```
+    npm run dev
+    ```
+## 🚀 Usage
 
-```bash
-npm install
-```
+### Running the Application Locally
+- Start the server and frontend as described in the setup instructions.
+    ```
+    http://localhost:3000
+    ```
 
-### Run the development server
 
-```bash
-npm run dev
-```
-
-### Setup pnpm (optional)
-
-If you are using `pnpm`, you need to add the following code to your `.npmrc` file:
-
-```bash
-public-hoist-pattern[]=*@nextui-org/*
-```
-
-After modifying the `.npmrc` file, you need to run `pnpm install` again to ensure that the dependencies are installed correctly.
+## Admin login Credential
+  ```
+  email: rahiilarham@gmail.com
+  pass: 123456
+ ```
 
 ## License
+    This project is Task Project .
 
-Licensed under the [MIT license](https://github.com/nextui-org/next-app-template/blob/main/LICENSE).
+## 📬 Contact
+
+For questions or support, please reach out through the [Contact Us](#) page on the website or email us at **rahiilarham@gmail.com**.
+
+Happy Coding! 🥘

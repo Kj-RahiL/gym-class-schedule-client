@@ -46,7 +46,7 @@ export async function middleware(request: NextRequest) {
   if (role === "Trainer" && pathname.match(/^\/trainer-dashboard/)) {
     return NextResponse.next();
   }
-  if (pathname === "/classes") {
+  if (pathname === "/class") {
     return NextResponse.next(); 
   }
   
@@ -57,7 +57,7 @@ export const config = {
   matcher: [
     "/login",
     "/register",
-    "/classes",
+    "/class",
     "/trainer-dashboard/:page*",
     "/admin-dashboard/:page*",
   ],

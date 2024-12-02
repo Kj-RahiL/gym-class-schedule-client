@@ -23,13 +23,11 @@ const ViewClass = () => {
     }
     console.log(user, 'view')
   const { data:scheduleData, isLoading, error } = useGetScheduleByTrainerQuery(user?.trainerId);
-  console.log(scheduleData, 'sssssss')
-  console.log(error, 'sssssss')
+  
 
 
 
   if (isLoading) return <div>Loading</div>;
-  if (error) return <p>Error fetching users: </p>;
 
   return (
     <div>

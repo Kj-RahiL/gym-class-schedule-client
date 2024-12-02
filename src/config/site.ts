@@ -9,6 +9,10 @@ export const siteConfig = {
       href: "/",
     },
     {
+      label: "Class",
+      href: "/class",
+    },
+    {
       label: "Pricing",
       href: "/pricing",
     },
@@ -23,8 +27,8 @@ export const siteConfig = {
   ],
   navMenuItems: [
     {
-      label: "Profile",
-      href: "/profile",
+      label: "Class",
+      href: "/class",
     },
     {
       label: "Projects",
