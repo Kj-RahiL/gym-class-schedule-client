@@ -12,9 +12,9 @@ import { useRouter } from "next/navigation";
 
 const NavbarDropDown = ({ user }: any) => {
   const router = useRouter();
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
   const handleLogout = () => {
-    dispatch(logOut())
+    dispatch(logOut());
     router.push("/");
   };
 
@@ -35,20 +35,21 @@ const NavbarDropDown = ({ user }: any) => {
           <p className="font-semibold">Signed in as</p>
           <p className="font-semibold">{user?.email}</p>
         </DropdownItem>
-        <DropdownItem
-          key="dashboard"
-          href={
-            user?.role === "Admin"
-              ? "/admin-dashboard"
-              : user?.role === "Trainer"
-              ? "/trainer-dashboard"
-              : user?.role === "Trainee"
-              ? "/trainee-dashboard"
-              : "/"
-          }
-        >
-          Dashboard
-        </DropdownItem>
+   
+          <DropdownItem
+            key="dashboard"
+            href={
+              user?.role === "Admin"
+                ? "/admin-dashboard"
+                : user?.role === "Trainer"
+                  ? "/trainer-dashboard"
+                  : ""
+            }
+          >
+           {user?.role === "Admin" || user?.role === "Trainer" ? "Dashboard" : null}
+          </DropdownItem>
+          
+
         <DropdownItem key="settings" href="/profile">
           My Profile
         </DropdownItem>

@@ -15,7 +15,7 @@ import { toast } from "sonner";
 import { TUser } from "@/types";
 import NormalLoading from "@/app/(commonLayout)/components/Loading/NormalLoading";
 
-const UserManage = () => {
+const ClassSchedule = () => {
   const { data: users, isLoading, error, isSuccess, refetch } = useGetAllUser();
   const userData = users?.data as TUser[]
 
@@ -113,4 +113,4 @@ const UserManage = () => {
   );
 };
 
-export default UserManage;
+export default ClassSchedule;

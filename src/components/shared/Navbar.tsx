@@ -1,6 +1,14 @@
-"use client"
+"use client";
 import { siteConfig } from "@/config/site";
-import { Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenu, NavbarMenuItem, NavbarMenuToggle } from "@nextui-org/navbar";
+import {
+  Navbar,
+  NavbarBrand,
+  NavbarContent,
+  NavbarItem,
+  NavbarMenu,
+  NavbarMenuItem,
+  NavbarMenuToggle,
+} from "@nextui-org/navbar";
 import clsx from "clsx";
 import { usePathname, useRouter } from "next/navigation";
 import NextLink from "next/link";
@@ -13,14 +21,13 @@ import { logOut, useCurrentToken } from "@/redux/features/Auth/authSlice";
 import { verifyToken } from "@/utils/verifyToken";
 import { toast } from "sonner";
 
-
 const NavbarPage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
   const dispatch = useAppDispatch();
   const token = useAppSelector(useCurrentToken);
-  let user:any
+  let user: any;
 
   if (token) {
     user = verifyToken(token);
@@ -36,9 +43,9 @@ const NavbarPage = () => {
       maxWidth="2xl"
       height="5rem"
     >
-      <NavbarContent  justify="start">
+      <NavbarContent justify="start">
         <NavbarMenuToggle
-        className="sm:hidden"
+          className="sm:hidden"
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
         />
         <NavbarBrand>
@@ -47,7 +54,6 @@ const NavbarPage = () => {
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
-
         {siteConfig.navItems.map((item) => (
           <NavbarItem key={item.href}>
             <NextLink
@@ -68,7 +74,7 @@ const NavbarPage = () => {
       <NavbarContent justify="end">
         {user ? (
           <NavbarItem className="hidden lg:flex">
-            <NavbarDropDown  user={user}/>
+            <NavbarDropDown user={user} />
           </NavbarItem>
         ) : (
           <NavbarItem className="hidden sm:flex gap-2">
@@ -96,24 +102,20 @@ const NavbarPage = () => {
           </NavbarMenuItem>
         ))}
         <NavbarMenuItem>
-          <NextLink
-            className={clsx(
-              linkStyles({ color: "foreground" }),
-              "data-[active=true]:text-primary data-[active=true]:font-medium"
-            )}
-            color="foreground"
-            href={
-              user?.role === "Admin"
-                ? "/admin-dashboard"
-                : user?.role === "Trainer"
-                ? "/trainer-dashboard"
-                : user?.role === "Trainee"
-                ? "/trainee-dashboard"
-                : "/"
-            }
-          >
-            Dashboard
-          </NextLink>
+          {(user?.role === "Admin" || user?.role === "Trainer") && (
+            <NextLink
+              key="dashboard"
+              href={
+                user?.role === "Admin"
+                  ? "/admin-dashboard"
+                  : user?.role === "Trainer"
+                    ? "/trainer-dashboard"
+                    : "/"
+              }
+            >
+              Dashboard
+            </NextLink>
+          )}
         </NavbarMenuItem>
         {user ? (
           <NavbarMenuItem
@@ -121,7 +123,7 @@ const NavbarPage = () => {
             key="logout"
             onClick={() => (
               dispatch(logOut()),
-              toast.success('LogOut Successful', {duration:3000})
+              toast.success("LogOut Successful", { duration: 3000 })
             )}
           >
             Log Out

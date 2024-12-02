@@ -4,7 +4,7 @@ import { Modal, ModalContent } from "@nextui-org/react";
 const CustomModal = ({ children, ...props }: any) => {
   return (
     <Modal {...props} >
-      <ModalContent className="p-4">{children}</ModalContent>
+      <ModalContent className="p-4 bg-gray-800">{children}</ModalContent>
     </Modal>
   );
 };
