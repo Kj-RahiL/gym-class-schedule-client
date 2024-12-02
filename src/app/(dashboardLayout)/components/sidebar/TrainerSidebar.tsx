@@ -3,7 +3,7 @@ import { useSidebarContext } from "../../layout/layout-context";
 import Link from "next/link";
 import { Avatar, Tooltip } from "@nextui-org/react";
 import { Sidebar } from "./sidebarStyles";
-import {  Home, NotebookPen, PersonStanding, Settings, User, UserCircle2Icon, Users, Utensils } from "lucide-react";
+import {  CalendarDays, Home, HomeIcon, PersonStanding, Settings } from "lucide-react";
 import SidebarMenu from "./SidebarMenu";
 import SidebarItem from "./SidebarItem";
 
@@ -39,7 +39,7 @@ import SidebarItem from "./SidebarItem";
               <SidebarItem
                 isActive={pathname === "/trainer-dashboard/view-classes"}
                 title="View Classes"
-                icon={<Users />}
+                icon={<CalendarDays />}
                 href="/trainer-dashboard/view-classes"
               />
             </SidebarMenu>

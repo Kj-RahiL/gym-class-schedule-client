@@ -7,6 +7,7 @@ export type TUserLogin = {
   email: string;
   role: string;
   status: string;
+  trainerId: string;
   iat: number;
   exp: number;
 };

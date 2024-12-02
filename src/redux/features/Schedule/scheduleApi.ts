@@ -35,6 +35,17 @@ const scheduleApi = baseApi.injectEndpoints({
       }),
       providesTags:["Class"]
     }),
+
+    getScheduleByTrainer: builder.query({
+      query: (trainerId) => ({
+        url: `schedule/trainer/${trainerId}`,
+        method: "GET",
+        // headers: {
+        //   Authorization: ` ${token}`, 
+        // },
+      }),
+      providesTags:["Class"]
+    }),
     updateSchedule: builder.mutation({
       query: ({ id, ...updatedData }) => ({
         url: `schedule/${id}`,
@@ -63,6 +74,7 @@ export const {
  useCreateScheduleMutation,
  useGetAllScheduleQuery,
  useGetIdByScheduleQuery,
+ useGetScheduleByTrainerQuery,
  useUpdateScheduleMutation,
  useDeleteScheduleMutation
 } = scheduleApi;
