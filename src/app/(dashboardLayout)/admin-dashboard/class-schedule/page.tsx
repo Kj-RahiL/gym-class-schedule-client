@@ -1,8 +1,9 @@
+import ScheduleManage from "./ScheduleManage";
 
 
 const ClassSchedulePage = () => {
     return (
-    <div>Mange Class Schedule</div>
+    <ScheduleManage/>
     );
 };
 

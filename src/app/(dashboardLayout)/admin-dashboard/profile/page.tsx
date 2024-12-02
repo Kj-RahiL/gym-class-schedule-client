@@ -1,10 +1,10 @@
-import ProfileCard from "@/app/(commonLayout)/components/Profile/ProfileCard";
+
 
 
 const AdminProfile = () => {
     return (
         <div>
-            <ProfileCard/>
+            <h2>Profile Page Will be updated</h2>
         </div>
     );
 };
